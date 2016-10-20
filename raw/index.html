@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Math testing</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    button {
+      background-color: blue;
+      border: none;
+      color: white;
+      font-weight: bold;
+      font-size: 100%;
+    }
+
+    thead,
+    td {
+      text-align: left;
+      padding: 10px;
+    }
+
+    table,
+    pre {
+      background-color: #eee;
+    }
+  </style>
+
+  <script>
+    function MathJaxConfig() {
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [
+            ['$', '$'], // add $...$ -- math is more important than money :-)
+            ['\\(', '\\)'] // keep the default inline delimiters too
+          ]
+        },
+        messageStyle: "none", // override the default: don't show loading and typesetting messages bottom-left of browser
+        skipStartupTypeset: false, // set to true if you like, and just typeset programmatically
+        elements: ['with-inline-math','with-display-math'], // elements (by id) will be typeset on startup
+      });
+    }
+
+    // see MathJax.Hub API: http://docs.mathjax.org/en/latest/api/hub.html,
+    // and turn its APIs into asynchronous commands with MathJax.Hub.Queue(), as below
+    function typeset() {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'maths-to-format-later']);
+      MathJax.Hub.Queue(function() {
+        console.log("done!")
+      });
+    }
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJaxConfig();
+  </script>
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
+  <script>
+    function renderMarkdown() {
+      sourceElement = document.getElementById('markdown-source');
+      targetElement = document.getElementById('markdown-target');
+      var sourceText = sourceElement.textContent;
+      resultHTML = marked(sourceText);
+      targetElement.innerHTML = resultHTML;
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Math Testing</h1>
+
+  <p>Check the source of this page to see how MathJax and markdown can be used correctly, both individually, and together.</p>
+
+  <h2>MathJax</h2>
+
+  <p>
+    MathJax is the de facto standard for math typesetting. Normally, you'd install it using <b>TEX-AMS_HTML</b> configuration. Change delimiters to include $.
+    The code for that is in this page source.
+  </p>
+
+  <p id="with-inline-math">Then, you can do in-line equations, like $E=mc^2$ or $e^{i \pi}+1=0$.</p>
+
+  <p id="with-display-math">
+    And you can do display equations, like
+    $$
+    \int u \, dv = uv - \int v \, du
+    $$
+    or entire paragraphs of mathematical reasoning, with nice alignment, like
+    $$
+    \begin{align*}
+    {d \over dx} e^x &= e^x \\
+    \implies \int {1 \over x} dx &= \ln x + c
+    \end{align*}
+    $$
+  </p>
+
+  <p>
+    This works by MathJax looking for DOM elements with math delimiters in them, and transforming their content appropriately.
+    As the scripting at the head of this page shows, you can control which elements MathJax looks in; whether its formatting is automatic on page load or is
+    driven by other scripts; and a bunch of other things.
+  </p>
+
+  <h2>Controlling MathJax</h2>
+
+  <p>By default, MathJax typesets all math on a page when the page is loaded. You can override that behaviour<p>
+    <ul>
+      <li>by using the <tt>skipStartupTypeset</tt> option to disable any start-up typesetting</li>
+      <li>by specifying the <tt>elements</tt> start-up option to define only those elements you want typeset</li>
+    </ul>
+
+  <p id="maths-to-format-later">
+    If you do that, you'll have to typeset other stuff, like $y=mx+c$ or
+    $$
+    \sum_{i=1}^n i^2 = \tfrac{1}{6} n (n+1) (2n+1)
+    $$
+    from a later script.  Try it: <button onclick="typeset()">Typeset Math</button>
+  </p>
+
+  <p>
+    The MathJax API is powerful and allows you to select the elements you want to format.  Initially-specified elements have to be by ID
+    because the DOM is assumed not to have loaded.  Later-specified elements can be given by ID or DOM element.
+  </p>
+
+  <p>
+    The MathJax API description of the queuing mechanism is a bit heavy, mainly because it was written a long time before most developers
+    became used to routinely doing asynchronous programming.  In effect, <tt>MathJax.Queue()</tt> just calls asynchronous functions in sequence, so you if
+    you need to make an asynchronous callback after all its processing is done, just code it as the final function in the sequence.
+  </p>
+
+  <h2>Markdown</h2>
+
+  <p>
+    The nicest way to enter text in general is using markdown, especially <a href="https://guides.github.com/features/mastering-markdown/">GFM</a>, GitHub-flavoured markdown.
+    This allows you to write source text such as that on the left below, and then use a markdown renderer to convert it into formatted HTML.  Try it.
+  </p>
+
+  <table>
+    <tr>
+      <td>
+        <pre id="markdown-source">
+### Markdown section
+
+This is **nice**: you can have
+* lists, like this
+* _italic_ and **bold**
+
+And you can have code `inline()` and also block:
+```js
+var bar = function() {
+  console.log('hello');
+};
+```
+
+We can even have tables:
+
+feature | supported
+--- | ---
+tables | yes, though fairly plain
+maths | not natively: see below
+        </pre>
+      </td>
+
+      <td>
+        <p><button onclick="renderMarkdown()">Convert</button></p>
+      </td>
+
+      <td>
+        <div id="markdown-target">
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <p>
+    You have to actually choose a renderer.  A good client-side one is <a href="https://github.com/chjj/marked">marked</a>, which I'm using here.
+    There are other renderers, and they should work similarly when it comes to mixing their markup with math, which is the main subject of this page.
+  </p>
+
+  <h2>Markdown with MathJax</h2>
+
+  <p>
+    So MathJax is simple, and markdown is simple.  But how about combining the two?  What we'd like is for the text below to convert nicely into "the right thing".
+    In many cases this is obvious, but there is scope for tripping up: underscores mean one thing to MathJax and another to markdown, likewise vertical bars (pipes).
+    So we can expect the "obvious" approach to have problems.
+  </p>
+
+  <table>
+    <tr>
+      <td>
+        <pre id="math-md-source">
+You _really_ need this to work.
+
+Einstein: $E=mc^2$.
+
+Pythagoras: $a^2 = b^2 + c^2$.
+
+Series: $A = a_1 + a_2$.
+
+Comparison: $1 \lt x \implies x \gt 1$.
+
+Matrix: $A_{ij} = \sum_k B_{ik} C_{kj}$.
+
+Fourier:
+$$
+\begin{align*}
+F(\omega) &= \int_{-\infty}^{+\infty} e^{i\omega t} f(t) dt \\
+\implies f(t) &= {1 \over 2 \pi} \int_{-\infty}^{+\infty} e^{-i\omega t} F(\omega) d\omega
+\end{align*}
+$$
+
+Polynomial equations:
+
+linear | quadratic
+--|--
+$ax+b=0$ | $ax^2 + bx + c = 0$
+$x = -b/a$ | $x={-b \pm \sqrt{b^2 - 4ac} \over 2a}$
+solution if $a \ne 0$ | solution if $a \ne 0$; real solutions if $\|b^2\| > 4ac$
+
+Let's **hope** for an accurate conversion!
+        </pre>
+      </td>
+      <td>
+        <div id="math-md-target">
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <p>
+    The obvious approach is to convert markdown first, then math.
+    <button onclick="convertMarkdownThenMath()">Try that.</button> It doesn't work, because markdown does things with the
+    underscores in the math markup and then MathJax never gets to see them.  There's also an issue with the pipes in the table.
+  </p>
+
+  <script>
+    function convertMarkdownThenMath() {
+      sourceElement = document.getElementById('math-md-source');
+      targetElement = document.getElementById('math-md-target');
+      var sourceText = sourceElement.textContent;
+      resultHTML = marked(sourceText);
+      targetElement.innerHTML = resultHTML;
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'math-md-target']);
+    }
+  </script>
+
+  <p>
+    It's tempting to try the exact opposite: MathJax first, then markdown.
+    <button onclick="convertMathThenMarkdown()">Try that.</button> It doesn't work because we are taking the <tt>textContent</tt> of
+    the MathJax output and converting it using markdown, but the <tt>textContent</tt> includes the leaves of a bunch of HTML elements
+    which MathJax created, and this completely confuses markdown.
+  </p>
+
+  <script>
+    function convertMathThenMarkdown() {
+      sourceElement = document.getElementById('math-md-source');
+      targetElement = document.getElementById('math-md-target');
+      targetElement.textContent = sourceElement.textContent;
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'math-md-target']);
+      MathJax.Hub.Queue(function() {
+        var sourceText = targetElement.textContent;
+        resultHTML = marked(sourceText);
+        targetElement.innerHTML = resultHTML;
+      });
+    }
+  </script>
+
+  <p>
+    The above result is useless, but it gives us some insight.  If instead of the <tt>textContent</tt> we feed the
+    <tt>innerHTML</tt> to markdown, markdown ignores the content of MathJax's generated HTML, and just formats the base text,
+    which is exactly the text which MathJax didn't see and which we want to format with markdown.
+    <button onclick="convertMathThenMarkdownFromHTML()">Try that.</button>  It's pretty good: underscore and pipe work as expected.
+  </p>
+
+  <p>
+    You do still need to use sensible markup within your MathJax:
+  </p>
+  <ul>
+    <li>use `\|` for modulus: it formats better, and doesn't get mixed up with markdown table delimiters</li>
+    <li>use `\gt`, `\lt` etc for inequalities: they format better, and don't get mixed up with HTML tag delimiters</li>
+  </ul>
+
+  <script>
+    function convertMathThenMarkdownFromHTML() {
+      sourceElement = document.getElementById('math-md-source');
+      targetElement = document.getElementById('math-md-target');
+      targetElement.textContent = sourceElement.textContent;
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'math-md-target']);
+      MathJax.Hub.Queue(function() {
+        var sourceHTML = targetElement.innerHTML;
+        resultHTML = marked(sourceHTML);
+        targetElement.innerHTML = resultHTML;
+      });
+    }
+  </script>
+
+</body>
+
+</html>
