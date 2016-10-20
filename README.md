@@ -1,8 +1,8 @@
 # Math and markdown typesetting
 
-Markdown and math typesetting are successfully mixed on quite a few websites (eg Stack Exchange and Wikipedia) and systems (eg iPython notebooks).
-But how-to recipes for creating such systems are quite hard to find: MathJax's documentation is long-winded, markdown's documentation
-is extraordinarily distributed, and answers I've seen about mixing the two are often incorrect.  This project contains my personal notes about
+Markdown and math typesetting are successfully mixed on quite a few websites (eg Stack Exchange) and systems (eg iPython notebooks).
+But how-to recipes for creating such systems are quite hard to find: MathJax's documentation is accurate but long-winded; markdown's documentation
+is brief but extraordinarily distributed; and answers I've seen about mixing the two are often incorrect.  This project contains my personal notes about
 how to do it, along with example code.
 
 ## Running the code
