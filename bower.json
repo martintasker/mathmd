@@ -1,0 +1,24 @@
+{
+  "name": "mathmd",
+  "homepage": "https://github.com/martintasker/mathmd",
+  "authors": [
+    "Martin Tasker"
+  ],
+  "description": "combined markdown and MathJax, wrapped in Angular",
+  "main": "src/mathmd.directive.js",
+  "keywords": [
+    "markdown",
+    "mathjax",
+    "angular",
+    "directive"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/*.spec.js",
+    "raw",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ]
+}
