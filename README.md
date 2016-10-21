@@ -139,5 +139,5 @@ There are many possibilities for feature enhancements:
 
 I'm English: I learned "maths" at school.<br/>
 I'm a software engineer: most of us do "math".<br/>
-I'm lazy: I can't be bothered with "methematics".<br/>
+I'm lazy: I can't be bothered with "mathematics".<br/>
 So you'll find both "math" and "maths" here.  Ho hum!
