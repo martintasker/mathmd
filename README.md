@@ -99,21 +99,45 @@ The attribute is a hard-coded string.
 
 ## Testing the code
 
-(still bringing up test infrastructure)
+You can run `jshint` and `jscs` lints, and `karma` unit tests, via
+
+```shell
+grunt
+```
+
+Or you can do each individually with `grunt jshint`, `grunt karma` etc.
+
+Beforehand, you must
+
+```shell
+npm install
+bower install
+```
+
+You also need some globally-installed pre-requisites, for example
+
+* `phantomjs` -- used for convenient command-line browser testing
+* `jshint` -- for linting
 
 ## To do
 
 Issues to address:
 
-* complete the bring-up of test infrastructure
 * occasional non-formatting due to non-definition of MathJax at the time formatting is required.  This can sometimes be seen
   on the demo page when it's first loaded -- though it won't be seen on a refresh due to browser caching.
 
 There are many possibilities for feature enhancements:
 
 * add testing of MathJax to the karma-driven unit tests (currently only markdown is tested)
-* change the `src` attribute to take interpolated expressions rather than just a string
+* change the `src` attribute to take interpolated expressions rather than just a string (or check out `nc-src` as an alternative)
 * add a `nomath` attribute which disables any attempt at math typesetting
 * add global configuration options set via `angular.module('mpt.mathmd').config()`, eg to permit control of math delimiters
 * add an inline content option which can be used as an alternative to the `src` attribute and separate `.md` file
 * experiment with local MathJax installation and document the result
+
+## Disclaimer
+
+I'm English: I learned "maths" at school.<br/>
+I'm a software engineer: most of us do "math".<br/>
+I'm lazy: I can't be bothered with "methematics".<br/>
+So you'll find both "math" and "maths" here.  Ho hum!

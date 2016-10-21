@@ -48,10 +48,16 @@ module.exports = function (grunt) {
         src: ['src/*.spec.js']
       }
     },
+
+    karma: {
+      unit: {
+        configFile: 'test/karma.conf.js',
+        singleRun: true
+      }
+    }
   });
 
   grunt.registerTask('test', [
-    'wiredep',
     'karma'
   ]);
 
