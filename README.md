@@ -3,8 +3,8 @@
 Here is
 
 * a brief how-to, in very plain HTML, at `raw/index.html`
-* an angular tag, `&lt;mathmd&gt;`
-* a demo of the `&lt;mathmd&gt;` tag, in slightly less plain HTML, at `demo/index.html`
+* an angular tag, `<mathmd>`
+* a demo of the `<mathmd>` tag, in slightly less plain HTML, at `demo/index.html`
 
 Why?  Because although math and markdown typesetting are successfully mixed in various places (eg Stack Exchange, and iPython notebooks),
 existing how-to information is patchy, and the documentation of both mathjax and markdown implementations hard to navigate.
@@ -26,7 +26,7 @@ http-server
 
 and then browse `localhost:8080`.
 
-To serve up the demo of the angular `&lt;mathmd&gt;` tag,
+To serve up the demo of the angular `<mathmd>` tag,
 
 ```shell
 cd demo
@@ -42,7 +42,7 @@ and then browse `localhost:8080`.
 
 You can copy and tweak the code in `raw/index.html` to your taste, for use in raw web pages.
 
-### Using the `&lt;mathmd&gt;` tag in an Angular application
+### Using the `<mathmd>` tag in an Angular application
 
 From your application's main directory,
 
@@ -80,7 +80,7 @@ Also include customization for the `MathJax` library and an asynchronous load of
 
 You have some options with the above snippet:
 
-* don't include it at all: then, the `&lt;mathmd&gt;` tag will only format as plain markdown
+* don't include it at all: then, the `<mathmd>` tag will only format as plain markdown
 * don't bother with the `inlineMath` specification: then, only the default `\(` and `\)` escapes will be used for inline math
 * use the default setting for messageStyle which shows you when MathJax is formatting and when it detects errors
 
