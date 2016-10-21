@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>MathMd Demo</title>
+  <meta name="description" content="mathmd demo">
+  <meta name="viewport" content="width=device-width">
+
+  <script type="text/x-mathjax-config">
+    // if you want math formatting, include this snippet, and also the script below from the MathJax CDN
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$', '$'],['\\(', '\\)']]}, // your choice: you don't get $ delimiter by default
+      messageStyle: "none",
+      skipStartupTypeset: true,
+    });
+  </script>
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+  <style>
+    /* some really minimal styling just for this demo: normally, you'd use a stylesheet */
+    body {
+      font-family: sans-serif;
+    }
+
+    thead,
+    td {
+      text-align: left;
+      padding: 10px;
+    }
+
+    table,
+    pre {
+      background-color: #eee;
+    }
+  </style>
+</head>
+
+<body ng-app="mpt.mathmd">
+  <h1>Markdown and MathJax demo</h1>
+
+  <p>We start in HTML.</p>
+
+  <mathmd src="demo.md">
+  </mathmd>
+
+  <h2>Back to HTML</h2>
+  <p>Hope you enjoyed that.</p>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/marked/lib/marked.js"></script>
+  <script src="bower_components/mathmd/src/mathmd.directive.js"></script>
+
+</body>
+
+</html>
