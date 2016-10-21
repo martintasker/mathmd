@@ -129,9 +129,10 @@ Issues to address:
 There are many possibilities for feature enhancements:
 
 * add testing of MathJax to the karma-driven unit tests (currently only markdown is tested)
-* change the `src` attribute to take interpolated expressions rather than just a string (or check out `nc-src` as an alternative)
+* change the `src` attribute to take interpolated expressions rather than just a string (or check out `ng-src` as an alternative)
 * add a `nomath` attribute which disables any attempt at math typesetting
 * add global configuration options set via `angular.module('mpt.mathmd').config()`, eg to permit control of math delimiters
+* add a `math-live` attribute which doesn't hide the text content while math typesetting is pending
 * add an inline content option which can be used as an alternative to the `src` attribute and separate `.md` file
 * experiment with local MathJax installation and document the result
 
@@ -140,4 +141,4 @@ There are many possibilities for feature enhancements:
 I'm English: I learned "maths" at school.<br/>
 I'm a software engineer: most of us do "math".<br/>
 I'm lazy: I can't be bothered with "mathematics".<br/>
-So you'll find both "math" and "maths" here.  Ho hum!
+So you'll find both "math" and "maths" here.  Ho hum.
