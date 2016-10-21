@@ -16,6 +16,7 @@
   "ignore": [
     "**/*.spec.js",
     "raw",
+    "demo",
     "**/.*",
     "node_modules",
     "bower_components",
